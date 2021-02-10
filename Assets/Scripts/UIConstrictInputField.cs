@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class UIConstrictMapInput : MonoBehaviour
+public class UIConstrictInputField : MonoBehaviour
 {
+    [SerializeField]
+    private bool useMax = true;
+
     private string currentAcceptedText = "";
 
     private TMP_InputField inputField;
@@ -25,7 +28,7 @@ public class UIConstrictMapInput : MonoBehaviour
             int result = 0;
             if (int.TryParse(newText, out result))
             {
-                if (int.Parse(sizeText) > 12)
+                if (int.Parse(sizeText) > 12 && useMax)
                 {
                     inputField.text = "12";
                     currentAcceptedText = "12";
