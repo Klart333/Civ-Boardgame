@@ -41,16 +41,17 @@ public class CityHandler : MonoBehaviour
     [SerializeField]
     private TMP_InputField treeInput;
 
-    private List<City> savedCities = new List<City>();
+    [HideInInspector]
+    public List<City> SavedCities = new List<City>();
 
     public void AddCity()
     {
-        var city = new City(nameInput.text, int.Parse(goldInput.text) * goldGoldAmount + int.Parse(grassInput.text) * grassGoldAmount + int.Parse(riverInput.text) * riverGoldAmount + int.Parse(grassWithWaterInput.text) * grassWithWaterGoldAmount + int.Parse(sandInput.text) * sandGoldAmount + int.Parse(snowInput.text) * snowGoldAmount + int.Parse(stoneInput.text) * stoneGoldAmount + int.Parse(treeInput.text) * treeGoldAmount);
-        savedCities.Add(city);
+        var city = new City(nameInput.text, (string.IsNullOrEmpty(goldInput.text) ? 0 : int.Parse(goldInput.text) * goldGoldAmount) + (string.IsNullOrEmpty(grassInput.text) ? 0 : int.Parse(grassInput.text) * grassGoldAmount) + (string.IsNullOrEmpty(riverInput.text) ? 0 : int.Parse(riverInput.text) * riverGoldAmount) + (string.IsNullOrEmpty(grassWithWaterInput.text) ? 0 : int.Parse(grassWithWaterInput.text) * grassWithWaterGoldAmount) + (string.IsNullOrEmpty(sandInput.text) ? 0 : int.Parse(sandInput.text) * sandGoldAmount) + (string.IsNullOrEmpty(snowInput.text) ? 0 : int.Parse(snowInput.text) * snowGoldAmount) + (string.IsNullOrEmpty(stoneInput.text) ? 0 : int.Parse(stoneInput.text) * stoneGoldAmount) + (string.IsNullOrEmpty(treeInput.text) ? 0 : int.Parse(treeInput.text) * treeGoldAmount));
+        SavedCities.Add(city);
     }
 }
 
-struct City
+public struct City
 {
     public string name;
     public int gold;
